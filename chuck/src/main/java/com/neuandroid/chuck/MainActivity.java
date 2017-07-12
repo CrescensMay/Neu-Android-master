@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.FrameLayout;
 
 import com.squareup.seismic.ShakeDetector;
 
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
     private EditText edtFirstName;
     private EditText edtLastName;
     private Button jButton;
+    private colorWheel jcolorWheel = new colorWheel();
+    private View jView;
 
 
     @Override
@@ -44,14 +47,17 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
         ShakeDetector sd = new ShakeDetector(this);
         sd.start(sensorManager);
 
-
-
         tvChuck = (TextView) findViewById(R.id.tv_chuck);
         tvChuck.setText(getText(R.string.click_to_load));
         jButton = (Button) findViewById(R.id.trigger);
+        jView = findViewById(R.id.framelayout);
+
         jButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int jColor;
+                jColor = jcolorWheel.getColor();
+                jView.setBackgroundColor(jColor);
                 animate();
                 loadChuckQuotes();
             }
