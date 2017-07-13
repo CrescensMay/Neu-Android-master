@@ -8,4 +8,5 @@
     <string name="result_empty">Query failed, no valid data</string>
     <string name="show_me_joke">show me another joke</string>
     <string name="joke_count">No joke available yet </string>
+    <string name="go_to_home">get jokes</string>
 </resources>
