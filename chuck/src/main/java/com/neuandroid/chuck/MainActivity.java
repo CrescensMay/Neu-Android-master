@@ -5,10 +5,13 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.animation.TimeInterpolator;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.hardware.SensorManager;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.app.Activity;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
@@ -75,6 +78,32 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
         edtLastName = (EditText) findViewById(R.id.edt_last_name);
 
         Toast.makeText(MainActivity.this, "Welcome to the Joke's Show!",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBackPressed(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setMessage("Do you want to exit?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                finish();
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
     private void counting(){
 
