@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
     private Button jButton;
     private colorWheel jcolorWheel = new colorWheel();
     private View jView;
+    private TextView jViewCount;
+    private int count = 1;
 
 
     @Override
@@ -51,22 +53,32 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
         tvChuck.setText(getText(R.string.click_to_load));
         jButton = (Button) findViewById(R.id.trigger);
         jView = findViewById(R.id.framelayout);
+        jViewCount = (TextView) findViewById(R.id.counter);
 
         jButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 int jColor;
                 jColor = jcolorWheel.getColor();
                 jView.setBackgroundColor(jColor);
                 animate();
+                counting();
                 loadChuckQuotes();
+
+
             }
         });
         pbLoading = (ProgressBar) findViewById(R.id.pb_loading);
         edtFirstName = (EditText) findViewById(R.id.edt_first_name);
         edtLastName = (EditText) findViewById(R.id.edt_last_name);
     }
+    private void counting(){
 
+
+            String counting = " Joke : " + count++ + " ";
+            jViewCount.setText(counting);
+    }
     private void loadChuckQuotes() {
         String firstName = edtFirstName.getText().toString();
         String lastName = edtLastName.getText().toString();
