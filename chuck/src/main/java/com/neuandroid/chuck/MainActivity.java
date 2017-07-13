@@ -3,7 +3,6 @@ package com.neuandroid.chuck;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
-import android.animation.TimeInterpolator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.hardware.SensorManager;
@@ -11,7 +10,6 @@ import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.Activity;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,7 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.squareup.seismic.ShakeDetector;
@@ -70,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
                 counting();
                 loadChuckQuotes();
 
-
             }
         });
         pbLoading = (ProgressBar) findViewById(R.id.pb_loading);
@@ -80,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
         Toast.makeText(MainActivity.this, "Welcome to the Joke's Show!",Toast.LENGTH_LONG).show();
     }
 
+    //Alert added on back button pressed
     @Override
     public void onBackPressed(){
 
@@ -108,29 +105,32 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
 
     private void counting(){
 
-        String content = tvChuck.getText().toString();
-        if(content == getString(R.string.result_empty)){
+//        String content = tvChuck.getText().toString();
+        String counting = " Joke : " + count++ + " ";
 
-            jViewCount.setText(getString(R.string.joke_count));
-        }
-        else if(content == getString(R.string.click_to_load)){
+        jViewCount.setText(counting);
 
-            jViewCount.setText(getString(R.string.joke_count));
-        }
-        else{
-
-            String counting = " Joke : " + count++ + " ";
-            jViewCount.setText(counting);
-        }
+//        if(content == getString(R.string.click_to_load)){
+//
+//            if(content == getString(R.string.result_empty)){
+//
+//                tvChuck.setText(getString(R.string.result_empty));
+//                jViewCount.setText(getString(R.string.joke_count));
+//            }
+//        }
+//        else if(content != getString(R.string.result_empty) ){
+//
+//            jViewCount.setText(counting);
+//        }
     }
 
     private void loadChuckQuotes() {
+
         String firstName = edtFirstName.getText().toString();
         String lastName = edtLastName.getText().toString();
         URL url = NetworkUtils.buildUrl(firstName, lastName);
 
         new ChuckQuoteTask().execute(url);
-
     }
 
     @Override
@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
         loadChuckQuotes();
     }
 
+    //Animate the chuck label scaling x and y postion at the same time
     public void animate(){
 
         Animator scaleText = AnimatorInflater.loadAnimator(this,R.animator.scale);
@@ -148,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
 
     }
 
+    //dismiss keyboard by clicking anywhere on the screen
     @Override
     public boolean onTouchEvent(MotionEvent event){
 
@@ -175,9 +177,12 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
             String result = null;
 
             try {
+
                 URL url = params[0];
                 result = NetworkUtils.getResponseFromHttpUrl(url);
+
             } catch (IOException e) {
+
                 e.printStackTrace();
             }
 
@@ -204,8 +209,7 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
                     tvChuck.setText(getString(R.string.result_empty));
                 }
             }
-            tvChuck.setText(getString(R.string.result_empty));
-
+//            tvChuck.setText(getString(R.string.result_empty));
         }
 
         private String extractJokeFromJson(String json) throws JSONException {
