@@ -6,8 +6,8 @@
     <string name="hint_chuck">Chuck</string>
     <string name="hint_norris">Norris</string>
     <string name="result_empty">Query failed, no valid data</string>
-    <string name="show_me_joke">show me another joke</string>
+    <string name="show_me_joke">show me a joke</string>
     <string name="joke_count">No joke available yet</string>
-    <string name="go_to_home">get jokes</string>
+    <string name="go_to_home">go to jokes</string>
     <string name="welcome">Welcome to Chuck Jokes</string>
 </resources>
