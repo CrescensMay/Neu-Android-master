@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class HomeActivity extends Activity{
@@ -33,5 +34,7 @@ public class HomeActivity extends Activity{
                 startActivity(intent);
             }
         });
+
+        Toast.makeText(HomeActivity.this, "App succesfully launched!",Toast.LENGTH_LONG).show();
     }
 }

@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.squareup.seismic.ShakeDetector;
 
@@ -72,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
         pbLoading = (ProgressBar) findViewById(R.id.pb_loading);
         edtFirstName = (EditText) findViewById(R.id.edt_first_name);
         edtLastName = (EditText) findViewById(R.id.edt_last_name);
+
+        Toast.makeText(MainActivity.this, "Welcome to the Joke's Show!",Toast.LENGTH_LONG).show();
     }
     private void counting(){
 
