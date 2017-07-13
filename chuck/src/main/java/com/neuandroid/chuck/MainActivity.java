@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
-        builder.setMessage("Do you want to exit?");
+        builder.setMessage("Do you want to go back?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
             @Override
@@ -105,12 +105,25 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
         AlertDialog alert = builder.create();
         alert.show();
     }
+
     private void counting(){
 
+        String content = tvChuck.getText().toString();
+        if(content == getString(R.string.result_empty)){
+
+            jViewCount.setText(getString(R.string.joke_count));
+        }
+        else if(content == getString(R.string.click_to_load)){
+
+            jViewCount.setText(getString(R.string.joke_count));
+        }
+        else{
 
             String counting = " Joke : " + count++ + " ";
             jViewCount.setText(counting);
+        }
     }
+
     private void loadChuckQuotes() {
         String firstName = edtFirstName.getText().toString();
         String lastName = edtLastName.getText().toString();
@@ -191,6 +204,8 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
                     tvChuck.setText(getString(R.string.result_empty));
                 }
             }
+            tvChuck.setText(getString(R.string.result_empty));
+
         }
 
         private String extractJokeFromJson(String json) throws JSONException {

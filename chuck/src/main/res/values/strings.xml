@@ -9,5 +9,6 @@
     <string name="show_me_joke">show me a joke</string>
     <string name="joke_count">No joke available yet</string>
     <string name="go_to_home">go to jokes</string>
+    <string name="description">image view</string>
     <string name="welcome">Welcome to Chuck Jokes</string>
 </resources>
